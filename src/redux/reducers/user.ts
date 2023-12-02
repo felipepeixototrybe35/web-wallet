@@ -5,9 +5,9 @@ const INITIAL_STATE = {
   email: '',
 };
 
-const userReducer = (state = INITIAL_STATE, action: AnyAction) => {
+const userReducer = (state = INITIAL_STATE, action) => {
   if (action.type === 'EMAIL') {
-    return { ...state, email: '' };
+    return { ...state, email: action.payload };
   }
   return state;
 };

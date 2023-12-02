@@ -1,9 +1,9 @@
 // configure aqui sua store
 import { legacy_createStore as createStore } from 'redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import { useReducer } from 'react';
+import rootReducer from './reducers';
 
-
-const store = createStore(useReducer, composeWithDevTools());
+const store = createStore(rootReducer, composeWithDevTools());
+window.store = store;
 
 export default store;

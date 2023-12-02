@@ -1,19 +1,21 @@
-// import { legacy_createStore as createStore } from 'redux';
-// import { composeWithDevTools } from '@redux-devtools/extension';
-// import reducer from
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import store from '../redux';
+import { saveEmail } from '../redux/actions';
+// import store from '../redux';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
-  const habEntrar = true;
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const habEntrar = regex.test(email) && senha.length > 5;
+  const dispatch = useDispatch();
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     navigate('/carteira');
-    store.dispatch({ type: 'EMAIL' });
+    // store.dispatch({ type: 'EMAIL' });
+    dispatch(saveEmail(email));
   };
   return (
     <form onSubmit={ handleSubmit }>
