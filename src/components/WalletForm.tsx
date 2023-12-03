@@ -19,12 +19,18 @@ function WalletForm() {
       <select
         data-testid="method-input"
       >
-        pagamento
+        <option>Dinheiro</option>
+        <option>Cartão de crédito</option>
+        <option>Cartão de débito</option>
       </select>
       <select
         data-testid="tag-input"
       >
-        categoria
+        <option>Alimentação</option>
+        <option>Lazer</option>
+        <option>Trabalho</option>
+        <option>Transporte</option>
+        <option>Saúde</option>
       </select>
     </form>
   );
