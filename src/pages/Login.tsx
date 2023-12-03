@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { saveEmail } from '../redux/actions';
@@ -6,6 +6,7 @@ import { saveEmail } from '../redux/actions';
 
 function Login() {
   const [email, setEmail] = useState('');
+  // const usermail = useSelector((state: { usermail: }))
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
