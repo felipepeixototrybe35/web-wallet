@@ -1,15 +1,20 @@
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
-// import { AnyAction } from 'redux';
+import { AnyAction } from 'redux';
 
-// const INITIAL_STATE = {
-//   senha: '',
-// };
+import { Action } from 'history';
+import { CURRENCY, EXPENSES } from '../actions';
 
-// const walletReducer = (state = INITIAL_STATE, action: AnyAction) => {
-//   if (action.type === 'EMAIL') {
-//     return { ...state, email: '' };
-//   }
-//   return state;
-// };
+const INITIAL_STATE = {
+  currencies: [],
+};
 
-// export default userReducer;
+const walletReducer = (state = INITIAL_STATE, action: AnyAction) => {
+  switch (action.type) {
+    case CURRENCY:
+      return { ...state, currencies: action.payload };
+    default:
+      return state;
+  }
+};
+
+export default walletReducer;
