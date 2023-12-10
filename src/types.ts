@@ -6,6 +6,8 @@ export type UserType = {
 export type WalletType = {
   currencies: string[],
   expenses: [],
+  editor: false,
+  idEdit: number,
 };
 
 export type ExpensesType = {

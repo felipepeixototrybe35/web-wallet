@@ -1,6 +1,7 @@
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { ExpensesType } from '../../types';
+import { API } from '../../components/Api';
 // Coloque aqui suas actions
 export const EMAIL = 'EMAIL';
 export const EXPENSES = 'EXPENSES';
@@ -24,12 +25,24 @@ export const saveCurrency = (currencies: string[]) => ({
 export const currenciesAPI = () => {
   return async (dispatch: ThunkDispatch<object, object, AnyAction>) => {
     try {
-      const response = await fetch('https://economia.awesomeapi.com.br/json/all');
-      const data = await response.json();
+      const data = await API();
       const result = Object.keys(data).filter((e: any) => e !== 'USDT');
       dispatch(saveCurrency(result));
     } catch (error: any) {
       console.log(error.message);
+    }
+  };
+};
+
+export const expensesAPI = (expenses: any) => {
+  return async (dispatch: any) => {
+    try {
+      dispatch(saveExepenses({
+        ...expenses,
+        exchangeRates: await API(),
+      }));
+    } catch (error) {
+      console.log(error);
     }
   };
 };
