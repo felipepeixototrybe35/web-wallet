@@ -1,6 +1,7 @@
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import { ExpensesType } from '../../types';
+import { Dispatch } from 'react';
+import { ExpensesType, FormType } from '../../types';
 import { API } from '../../components/Api';
 // Coloque aqui suas actions
 export const EMAIL = 'EMAIL';
@@ -12,9 +13,9 @@ export const saveEmail = (email: string) => ({
   payload: email,
 });
 
-export const saveExepenses = (expenses: ExpensesType[]) => ({
+export const saveExepenses = (expenses: ExpensesType) => ({
   type: EXPENSES,
-  payload: expenses,
+  expenses,
 });
 
 export const saveCurrency = (currencies: string[]) => ({
@@ -34,15 +35,19 @@ export const currenciesAPI = () => {
   };
 };
 
-export const expensesAPI = (expenses: any) => {
-  return async (dispatch: any) => {
-    try {
-      dispatch(saveExepenses({
-        ...expenses,
-        exchangeRates: await API(),
-      }));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+// export const expensesAPI = (form: any) => {
+//   return async (dispatch: any) => {
+//     try {
+//       dispatch(saveExepenses({
+//         ...form,
+//         exchangeRates: await API(),
+//       }));
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
+export const expensesAPI = (expenses: ExpensesType) => ({
+  type: EXPENSES,
+  expenses,
+});

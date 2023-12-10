@@ -6,10 +6,11 @@ type UserType = {
 };
 function Header() {
   const { email } = useSelector((state: any) => state.user);
-  const anyExpenses = useSelector((state: any) => state.wallet.expenses);
-  const sumExpenses = anyExpenses.reduce((acc: any, expenses: any) => {
-    const expensesAsk = expenses.exchangeRates?.[expenses.currency]?.ask;
-    return acc + Number(expenses.value) * Number(expensesAsk);
+  const expenses = useSelector((state: any) => state.wallet.expenses);
+  const sumExpenses = expenses.reduce((acc: any, curr: any) => {
+    const { value, currency, exchangeRates } = curr;
+    const rates = exchangeRates[currency].ask;
+    return acc + ((parseFloat(value)) * parseFloat(rates));
   }, 0);
   return (
     <div>
