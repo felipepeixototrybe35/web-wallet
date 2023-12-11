@@ -15,7 +15,6 @@ const INITIAL_STATE = {
 
 function WalletForm() {
   const [form, setForm] = useState(INITIAL_STATE);
-  const dispatch1 = useDispatch();
   const dispatch: ThunkDispatch<object, object, AnyAction> = useDispatch();
   const currencies = useSelector((state: any) => state.wallet.currencies);
 
