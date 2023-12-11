@@ -1,12 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { saveEmail } from '../redux/actions';
-// import store from '../redux';
 
 function Login() {
   const [email, setEmail] = useState('');
-  // const usermail = useSelector((state: { usermail: }))
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -15,7 +13,6 @@ function Login() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     navigate('/carteira');
-    // store.dispatch({ type: 'EMAIL' });
     dispatch(saveEmail(email));
   };
   return (

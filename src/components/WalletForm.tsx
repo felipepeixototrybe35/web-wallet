@@ -1,8 +1,8 @@
-import { Key, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import { currenciesAPI, expensesAPI, saveExepenses } from '../redux/actions';
+import { currenciesAPI, saveExepenses } from '../redux/actions';
 import { API } from './Api';
 
 const INITIAL_STATE = {
@@ -15,8 +15,6 @@ const INITIAL_STATE = {
 
 function WalletForm() {
   const [form, setForm] = useState(INITIAL_STATE);
-  // const { id } = form;
-  const [index, setIndex] = useState(0);
   const dispatch1 = useDispatch();
   const dispatch: ThunkDispatch<object, object, AnyAction> = useDispatch();
   const currencies = useSelector((state: any) => state.wallet.currencies);
@@ -32,14 +30,11 @@ function WalletForm() {
   const handleSubmit = async (e: React.MouseEvent) => {
     e.preventDefault();
     const expense = {
-      ...form, id: index, exchangeRates: await API(),
+      ...form, exchangeRates: await API(),
     };
     dispatch(saveExepenses(expense));
+    // setIndex(index + 1);
     setForm(INITIAL_STATE);
-    // setForm({ ...form, ...INITIAL_STATE, id: id + 1 });
-    // const expenses = { ...form, id: index, exchangeRates: expensesAPI(expenses) };
-    // dispatch(saveExepenses(expenses));
-    setIndex(index + 1);
   };
 
   return (
@@ -67,7 +62,7 @@ function WalletForm() {
         onChange={ handleChange }
       >
         {currencies.map((currency: string) => (
-          <option key={ index }>{currency}</option>
+          <option key={ currency }>{currency}</option>
         ))}
       </select>
       <select

@@ -1,5 +1,4 @@
 // Esse reducer será responsável por tratar as informações da pessoa usuária
-import { AnyAction } from 'redux';
 import { EMAIL } from '../actions';
 import { UserType } from '../../types';
 

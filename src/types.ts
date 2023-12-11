@@ -2,12 +2,15 @@ export type UserType = {
   type: string;
   payload: string;
 };
+export type StateWalletType = {
+  currencies: string[],
+  expenses: ExpensesType[],
+  editor: boolean,
+  idEdit: number,
+};
 
 export type WalletType = {
-  currencies: string[],
-  expenses: [],
-  editor: false,
-  idEdit: number,
+  wallet: StateWalletType
 };
 
 export type ExchangeRates = {

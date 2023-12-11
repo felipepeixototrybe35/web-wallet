@@ -1,10 +1,9 @@
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 import { AnyAction } from 'redux';
-
-import { Action } from 'history';
 import { CURRENCY, EXPENSES } from '../actions';
+import { StateWalletType } from '../../types';
 
-const INITIAL_STATE = {
+const INITIAL_STATE: StateWalletType = {
   currencies: [],
   expenses: [],
   editor: false,
@@ -17,7 +16,11 @@ const walletReducer = (state = INITIAL_STATE, action: AnyAction) => {
       return { ...state, currencies: action.payload };
     case EXPENSES:
       return { ...state,
-        expenses: [...state.expenses, action.expenses],
+        expenses: [
+          ...state.expenses,
+          { id: state.expenses.length
+            ? state.expenses[state.expenses.length - 1].id + 1 : 0,
+          ...action.expenses }],
       };
     default:
       return state;

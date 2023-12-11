@@ -1,17 +1,16 @@
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { WalletType } from '../types';
 
-type UserType = {
-  email: string;
-};
 function Header() {
   const { email } = useSelector((state: any) => state.user);
-  const expenses = useSelector((state: any) => state.wallet.expenses);
+  // const expenses = useSelector((state: any) => state.wallet.expenses);
+  const expenses = useSelector(({ wallet }: WalletType) => wallet.expenses);
   const sumExpenses = expenses.reduce((acc: any, curr: any) => {
     const { value, currency, exchangeRates } = curr;
     const rates = exchangeRates[currency].ask;
-    return acc + ((parseFloat(value)) * parseFloat(rates));
+    return acc + (((parseFloat(value)) * parseFloat(rates)));
   }, 0);
+
   return (
     <div>
       <h1 data-testid="email-field">{email}</h1>
