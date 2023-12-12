@@ -27,16 +27,13 @@ function Table() {
             <td>
               {' '}
               {Number(expense.value)
-                .toLocaleString('pt-br', {
-                  style: 'currency',
-                  currency: 'BRL',
-                })}
+                .toFixed(2)}
               {' '}
             </td>
             <td>{expense.exchangeRates[expense.currency].name}</td>
-            <td>{expense.exchangeRates[expense.currency].ask}</td>
+            <td>{Number(expense.exchangeRates[expense.currency].ask).toFixed(2)}</td>
             <td>
-              {(expense.value * expense.exchangeRates[expense.currency]
+              {Number(expense.value * expense.exchangeRates[expense.currency]
                 .ask).toFixed(2)}
             </td>
             <td>Real</td>
